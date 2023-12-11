@@ -1,9 +1,10 @@
 import cv2
 import numpy as np
 import time
+import math
 
 # Path to the video file
-video_path = 'Resources/video_2023-12-09_18-13-38.mp4'
+video_path = 'Resources/video_2023-12-11_12-36-29.mp4'
 
 # Initialize global variables
 red_square_top_left = None
@@ -64,7 +65,8 @@ def report_difference(red_square_center, green_square_center):
     if current_time - last_time_reported >= report_interval:
         diff_x = green_square_center[0] - red_square_center[0]
         diff_y = green_square_center[1] - red_square_center[1]
-        print(f"Time: {current_time:.2f}, Difference in X: {diff_x}, Difference in Y: {diff_y}")
+        #print(f"Time: {current_time:.2f}, Difference in X: {diff_x}, Difference in Y: {diff_y}; in Degrees: {math.degrees(math.atan2(diff_x, diff_y))}")
+        print(f"Time: {current_time:.2f}, Difference in X: {diff_x}, Difference in Y: {diff_y}; in Degrees X: {math.degrees(math.atan2(green_square_center[0], red_square_center[0]))}; in Degrees Y: {math.degrees(math.atan2(green_square_center[1], red_square_center[1]))}")
         last_time_reported = current_time
 
 
